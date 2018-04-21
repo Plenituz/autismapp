@@ -1,20 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import HomePage from './HomePage';
+import LearningApp from './LearningApp';
+import Dashboard from './Dashboard';
+import NavigationBar from './NavigationBar';
+
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import 'bulma/css/bulma.css'
+
 import './App.css';
 
 class App extends Component {
-  render() {
+   constructor(props){
+    super(props);
+    this.state = {
+      loggedIn: false,
+      user: {userid: "fred", progress: 0}
+    };
+  }
+
+
+  
+
+
+   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+        <Router>
+          <div className="App">
+             <NavigationBar />
+             <Route exact path="/" render={()=><HomePage />} />
+             <Route path="/Dashboard" render={()=><Dashboard />} />
+             <Route path="/LearningApp" render={()=><LearningApp  />} />
+          </div>
+        </Router>
+
+    )
   }
 }
 
