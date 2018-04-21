@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
     name VARCHAR(20) NOT NULL,
     email VARCHAR(254) NOT NULL,
     creation_date DATE NOT NULL,
+    user_type TINYINT NOT NULL,
 
     PRIMARY KEY(id),
     UNIQUE KEY ind_uni_email(email)
