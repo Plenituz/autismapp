@@ -16,13 +16,11 @@ class Database{
         this.SQL = new SQLCache(this.pool);       
     }
 
-    async addUser(name, email, password, userType){
-        let passHash = await bcrypt.hash(password, parseInt(process.env.SALT_ROUND));
+    async addUser(name, email, userType){
         
         let result = await this.SQL.queryFile('addUser', {
             name,
             email,
-            password: passHash,
             userType
         });
         return result[0].created_user_id;
@@ -33,7 +31,7 @@ class Database{
         return result[0];
     }
     
-    async canAuthenticate(usernameOrEmail, password){
+    async canAuthenticate(usernameOrEmail){
         let result = await this.SQL.queryFile('canAuthenticate', {
             usernameOrEmail
         });
@@ -41,16 +39,30 @@ class Database{
             throw new Error('no user found');
         }
 
-        let passwordHash = result[0].password;
-        let userId = result[0].user_id;
-        let passwordMatch = await bcrypt.compare(password, passwordHash.toString());
-        if(passwordMatch){
-            return userId;
-        }else{
-            throw new Error('password doesnt match');
-        }
+        return result[0].id;
     }
 
+    async listQuestions(){
+        let result = await this.SQL.queryFile('listQuestions');
+        let dict = {};
+        for(let i = 0; i < result.length; i++){
+            let column = result[i];
+
+            if(!(column.question_id in dict)){
+                dict[column.question_id] = {
+                    title: column.question_text,
+                    answers: []
+                }
+            }
+
+            let questionObj = dict[column.question_id];
+            questionObj.answers.push({
+                content: column.content,
+                isRight: !!column.is_right
+            });
+        }
+        console.log();
+    }
 }
 
 
