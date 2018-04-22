@@ -22,6 +22,8 @@ var barData = {
 	                'rgba(153, 102, 255, 0.4)',
 	                'rgba(255, 159, 64, 0.4)'],
 			highlightStroke: "rgba(220,220,220,1)",
+			yAxisID: 'Activity',
+			display: true,
 			data: [65, 59, 80, 81, 56, 55]
 		},
 	]
@@ -51,12 +53,12 @@ export default class StudentPage extends Component {
 	       		 	 <div className="student-card"> </div> 
 		       	 </div>
 
-
 		       	 <div class="header-info">
 		       		 <h1 className="title">{this.props.student}</h1>
-		       		 <h2 className="subtitle is-5 special-sub">Age: 8</h2>
-		       		 <h2 className="subtitle is-5 special-sub">High Functioning</h2>
-		       		 <h2 className="subtitle is-5 special-sub">Notes: Likes Trains</h2>
+		       		 <h2 className="subtitle is-5 special-sub">8 Years Old.</h2>
+		       		 <h2 className="subtitle is-5 special-sub">High Functioning.</h2>
+		       		 <h2 className="subtitle is-5 special-sub">Visual Learner.</h2>
+		       		 <h2 className="subtitle is-6 special-sub">Notes: Likes playing with trains.</h2>
 		       	 </div>
 
 		         <RadarChart data={radarData} width="300" height="200" />

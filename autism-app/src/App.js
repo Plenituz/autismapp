@@ -28,13 +28,16 @@ function PrivateRoute ({component: Component, loggedIn, user, ...rest}) {
 }
 
 function PublicRoute ({component: Component, loggedIn, user, logIn, ...rest}) {
+  console.log(user);
 
   return (
     <Route
       {...rest}
       render={(props) => loggedIn === false
         ? <Component {...props} logIn={logIn} />
-        : <Redirect to='/dashboard' />}
+        : (user.userType === 0) ?
+            <Redirect to='/Dashboard' /> : <Redirect to='/EducationDashboard' /> }
+
     />
   )
 
