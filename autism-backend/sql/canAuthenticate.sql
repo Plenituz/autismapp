@@ -1,1 +1,1 @@
-SELECT id, password FROM users WHERE name=@usernameOrEmail OR email=@usernameOrEmail
+SELECT id, password FROM users WHERE name=@usernameOrEmail

@@ -54,9 +54,9 @@ LoginRouter.post('/register', [
 
 LoginRouter.post('/setTeacher', [
 
-    check('teacherId')
-    .exists().withMessage('teacherId must be given')
-    .not().isEmpty().withMessage('teacherId cant empty')
+    check('studentId')
+    .exists().withMessage('studentId must be given')
+    .not().isEmpty().withMessage('studentId cant empty')
     
 ], async (req, res) => {
 
@@ -64,8 +64,8 @@ LoginRouter.post('/setTeacher', [
         return res.status(422).send('you are not connected');
     }
 
-    var studentId = req.user.userId;
-    var teacherId = req.body.teacherId;
+    var studentId = req.body.studentId;
+    var teacherId = req.user.userId;
 
     try{
         await Database.setTeacher(studentId, teacherId);
@@ -97,6 +97,7 @@ LoginRouter.post('/login', [
 
     let usernameOrEmail = req.body.username;
     let password = req.body.password;
+
     try{
         let userId = await Database.canAuthenticate(usernameOrEmail, password);
         let userInfo = await Database.getUserInfo(userId);
@@ -108,7 +109,7 @@ LoginRouter.post('/login', [
             }
         });
     }catch(ex){
-        return res.status(422).send(ex);
+        return res.status(422).send('error:' + ex);
     }
 });
 
