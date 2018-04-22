@@ -9,13 +9,15 @@ DataRouter.post('/answer', async (req, res) => {
     //     return res.status(422).send('already logged in');
     // }
     var userId = req.query.userId;//req.user.userId;
-    var questionId = req.body.questionId;
-    var answerId = req.body.answerId;
+    var questionId = 1//req.body.questionId;
+    var answerId = 1//req.body.answerId;
+    var isRight = !!parseInt(req.body.isRight);
+    
     if(!questionId || !answerId){
-        return res.status(422).send('you need to provide questionId, answerId');
+        return res.status(422).send('you need to provide questionId, answerId, isRight');
     }
     try{
-        await Database.addUserAnswer(token, questionId, answerId);
+        await Database.addUserAnswer(userId, questionId, answerId, isRight);
         return res.status(200).send('answer added');
     }catch(ex){
         return res.status(422).send(ex);

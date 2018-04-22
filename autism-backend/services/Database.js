@@ -112,11 +112,12 @@ class Database{
         return resultArray;
     }
 
-    async addUserAnswer(userId, questionId, answerId){
+    async addUserAnswer(userId, questionId, answerId, isRight){
         await this.SQL.queryFile('addUserAnswer', {
             userId,
             questionId,
-            answerId
+            answerId,
+            isRight
         });
     }
 }
