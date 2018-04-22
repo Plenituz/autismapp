@@ -81,7 +81,8 @@ LoginRouter.get('/login', [
             if(err){
                 res.status(422).send('error logging in: ' + err);
             }else{
-                res.status(200).send('sucessfully logged in');
+                // res.status(200).send('sucessfully logged in');
+                res.redirect('/');
             }
         });
     }catch(ex){

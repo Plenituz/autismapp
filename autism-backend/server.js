@@ -40,6 +40,20 @@ app.use(bodyParser.urlencoded({ extended : false }));
 //must be after bodyParser
 app.use(expressValidator());
 
+passport.use(new LocalStrategy(
+    {
+
+    },
+    function(username, password, done) {
+      User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false); }
+        if (!user.verifyPassword(password)) { return done(null, false); }
+        return done(null, user);
+      });
+    }
+  ));
+
 passport.serializeUser(async (user_id, done) => {
     let userInfo = await Database.getUserInfo(user_id);
     done(null, userInfo);
