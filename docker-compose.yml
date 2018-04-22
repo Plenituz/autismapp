@@ -1,10 +1,19 @@
 version: "3"
 services:
     db: 
-        image: mysql:5.5 
+        image: mysql 
         ports:
             - "3306:3306"
-        environment : 
-            - MYSQL_ALLOW_EMPTY_PASSWORD=true
+        environment:
+            - MYSQL_ROOT_PASSWORD=root            
         volumes:
             - ./data:/docker-entrypoint-initdb.d
+    backend:
+        build: autism-backend/.
+        depends_on:
+            - db
+        env_file:
+            - autism-backend/.env_prod
+        ports:
+            - "8080:8080"
+
