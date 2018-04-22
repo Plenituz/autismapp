@@ -5,10 +5,10 @@ module.exports = DataRouter;
 
 DataRouter.post('/answer', async (req, res) => {
 
-    if(req.isAuthenticated()){
-        return res.status(422).send('already logged in');
-    }
-    var userId = req.user.userId;
+    // if(req.isAuthenticated()){
+    //     return res.status(422).send('already logged in');
+    // }
+    var userId = req.query.userId;//req.user.userId;
     var questionId = req.body.questionId;
     var answerId = req.body.answerId;
     if(!questionId || !answerId){

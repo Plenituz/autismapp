@@ -28,9 +28,9 @@ LoginRouter.post('/register', [
 
 ], async (req, res) => {
 
-    if(req.isAuthenticated()){
-        return res.status(422).send('already logged in');
-    }
+    // if(req.isAuthenticated()){
+    //     return res.status(422).send('already logged in');
+    // }
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -60,12 +60,12 @@ LoginRouter.post('/setTeacher', [
     
 ], async (req, res) => {
 
-    if(!req.isAuthenticated()){
-        return res.status(422).send('you are not connected');
-    }
+    // if(!req.isAuthenticated()){
+    //     return res.status(422).send('you are not connected');
+    // }
 
     var studentId = req.body.studentId;
-    var teacherId = req.user.userId;
+    var teacherId = req.query.userId;//req.user.userId;
 
     try{
         await Database.setTeacher(studentId, teacherId);
@@ -86,9 +86,9 @@ LoginRouter.post('/login', [
 ],
  async (req, res) => {
 
-    if(req.isAuthenticated()){
-        return res.status(422).send('already logged in');
-    }
+    // if(req.isAuthenticated()){
+    //     return res.status(422).send('already logged in');
+    // }
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -116,11 +116,11 @@ LoginRouter.post('/login', [
 LoginRouter.get('/userInfo',
  async (req, res) => {
 
-    if(!req.isAuthenticated()){
-        return res.status(422).send('you are not connected');
-    }
+    // if(!req.isAuthenticated()){
+    //     return res.status(422).send('you are not connected');
+    // }
 
-    var studentId = req.user.userId;
+    var studentId = req.query.userId;//req.user.userId;
     try{ 
         let userInfo = await Database.getUserInfo(studentId);
         res.status(200).send(userInfo);
@@ -130,11 +130,11 @@ LoginRouter.get('/userInfo',
 });
 
 LoginRouter.get('/studentInfo', async (req, res) => {
-    if(!req.isAuthenticated()){
-        return res.status(422).send('you are not connected');
-    }
+    // if(!req.isAuthenticated()){
+    //     return res.status(422).send('you are not connected');
+    // }
     var studentId = req.query.studentId;
-    var teacherId = req.user.userId;
+    var teacherId = req.query.userId//req.user.userId;
     if(!studentId){
         return res.status(422).send('you need to provide a teacherId, studentId');
     }
