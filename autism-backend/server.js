@@ -28,7 +28,7 @@ app.use(session({
 	store : new MySQLStore({
 		host : process.env.SQL_HOST,
 		user : process.env.SQL_USER,
-		password : '',
+		password : process.env.SQL_PASSWORD,
 		database : process.env.DB_NAME
 	}),
 	cookie: { secure : false } // put true here if we use HTTPS

@@ -9,7 +9,7 @@ class Database{
             connectionLimit: process.env.SQL_CONNECTION_LIMIT,
             host: process.env.SQL_HOST,
             user: process.env.SQL_USER,
-            password: '',
+            password: process.env.SQL_PASSWORD,
             database: process.env.DB_NAME,
             debug: false
         });
