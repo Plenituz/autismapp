@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS user_answers(
     answer_id int(11) NOT NULL,
     user_id int(11) NOT NULL,
     creation_date DATETIME NOT NULL,
+    is_right TINYINT NOT NULL,
 
     PRIMARY KEY(id),
     CONSTRAINT `question_id_user_answer_fk` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`),
