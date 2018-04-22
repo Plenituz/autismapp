@@ -4,11 +4,15 @@ const DataRouter = new express.Router();
 module.exports = DataRouter;
 
 DataRouter.post('/answer', async (req, res) => {
-    var token = req.query.token;
-    var questionId = req.query.questionId;
-    var answerId = req.query.answerId;
-    if(!token || !questionId || !answerId){
-        return res.status(422).send('you need to provide token, questionId, answerId');
+
+    if(req.isAuthenticated()){
+        return res.status(422).send('already logged in');
+    }
+    var userId = req.user.userId;
+    var questionId = req.body.questionId;
+    var answerId = req.body.answerId;
+    if(!questionId || !answerId){
+        return res.status(422).send('you need to provide questionId, answerId');
     }
     try{
         await Database.addUserAnswer(token, questionId, answerId);
