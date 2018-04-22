@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Cookie from './assets/cookie.jpg';
+
 export default class NavigationBar extends Component {
 
    render() {
