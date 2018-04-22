@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
-
+import axios from 'axios';
 
 export default class Register extends Component {
 
 //this.props.type
+
+  signUp = (event) => {
+    event.preventDefault();
+    // this.refs.email, this.refs.password
+
+//POST 
+// {
+//     username
+//     userType (0 for studen or 1 for teacher)
+//     age
+//     password
+// }
+    axios.post(`http://localhost:3001/`, 'user', 0, 9, 'password')
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
+
 
   render(){
     return(
