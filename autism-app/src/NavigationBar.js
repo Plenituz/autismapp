@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 export default class NavigationBar extends Component {
 
-
-
    render() {
     return (
         <div className="navigation-bar">
