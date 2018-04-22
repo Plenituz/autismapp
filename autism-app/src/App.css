@@ -2,8 +2,26 @@
   text-align: center;
 }
 
+#logout{
+  color: white;
+}
+
+#logout:hover{
+  color: black;
+  cursor: pointer;
+}
+
 .learning-app{
   margin-top: 5%;
+}
+
+#register{
+  margin: 20px 25% 0px 25%;
+}
+
+
+.form-container{
+  background-color: grey;
 }
 
 #card-gallery{
@@ -26,10 +44,16 @@
   cursor: pointer;
 }
 
-.fa{
+.fa-special{
   font-size: 80px;
   margin-top: 10px;
   color: hsl(204, 86%, 53%);
+}
+
+.progress-bar{
+  width: 75%;
+  margin-left: 12%;
+  align-items: center;
 }
 
 .hero-container{
@@ -53,12 +77,13 @@
 .cards-section{
   margin-left: 15px;
   margin-right: 20px;
-  padding-bottom: 100px;
+  padding-bottom: 30px;
 }
 
 .card{
   border-radius: 10px;
   border: 1px solid #f5f5f5;
+  height: 320px;
 }
 .navbar-item{
   font-size: 18px;
@@ -97,6 +122,27 @@
   margin-left: 20px;
 }
 
+#login-box{
+  margin-top: 30px;
+}
+#login-footer{
+  margin-top: 20px;
+}
+
+.nav-link-login{
+  font-size: 14px;
+}
+
+#login-hero{
+  background-color: #F2F6FA;
+}
+
+.control{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 #students-button:hover{
   background-color: #32CD32;
 }
@@ -118,9 +164,28 @@
 }
 
 .level-left{
-  margin-left: 14%;
+  margin-left: 16%;
 }
 
 .level-right{
-  margin-right: 14%;
+  margin-right: 16%;
+}
+
+.achievement{
+  height: 100px;
+  margin: 0px 10px 0px 10px;
+  opacity: .9;
+}
+
+.achievement:hover{
+  opacity: 1;
+  height: 103px;
+  cursor: pointer;
+}
+
+.cookie{
+  margin-left: 19px;
+  margin-top: 14px;
+  height: 27px;
+  width: auto;
 }

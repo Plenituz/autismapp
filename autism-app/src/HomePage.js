@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+
 
 export default class HomePage extends Component {
 
@@ -10,14 +12,18 @@ export default class HomePage extends Component {
 							      <div class="container has-text-centered">
 							        <div class="column is-6 is-offset-3">
 							          <h1 class="title hero-title">
-							          	Autism App Name
+							          	Kookie
 							          </h1>
 							          <h2 class="subtitle hero-sub">
 							            A learning platform for Autism.
 							          </h2>
 							          <div id="hero-buttons">
-							          	<button class="button is-warning is-medium" id="teachers-button">Teachers</button>
-							          	<button class="button is-success is-medium" id="students-button">Students</button>
+			               	 		<NavLink exact className="nav-link-login" activeClassName='active' to="/EducationDashboard">
+			               	 			<button class="button is-warning is-medium" id="teachers-button">Teachers</button>
+			               	 		</NavLink> 
+										    	<NavLink exact className="nav-link-login" activeClassName='active' to="/Dashboard">      	
+										    		<button class="button is-success is-medium" id="students-button">Students</button>
+										    	</NavLink> 
 							          </div>
 							        </div>
 							      </div>
@@ -29,7 +35,7 @@ export default class HomePage extends Component {
 						      <div class="column is-4">
 						        <div class="card is-shady">
 						          <div class="card-image has-text-centered">
-						              <i class="fa fa-pencil"></i>
+						              <i class="fa fa-special fa-pencil"></i>
 						          </div>
 						          <div class="card-content">
 						            <div class="content">
@@ -43,7 +49,7 @@ export default class HomePage extends Component {
 						      <div class="column is-4">
 						        <div class="card is-shady">
 						          <div class="card-image has-text-centered">
-						              <i class="fa fa-graduation-cap"></i>
+						              <i class="fa fa-special fa-graduation-cap"></i>
 						          </div>
 						          <div class="card-content">
 						            <div class="content">
@@ -57,7 +63,7 @@ export default class HomePage extends Component {
 						      <div class="column is-4">
 						        <div class="card is-shady">
 						          <div class="card-image has-text-centered">
-						              <i class="fa fa-puzzle-piece"></i>
+						              <i class="fa fa-special fa-puzzle-piece"></i>
 						          </div>
 						          <div class="card-content">
 						            <div class="content">
@@ -70,6 +76,16 @@ export default class HomePage extends Component {
 						      </div>
 						    </div>
              	</section>
+
+						<footer class="footer">
+						  <div class="container">
+						    <div class="content has-text-centered">
+						      <p>
+						         Created by Eric Hammel, Dorian Delannoy, and Antoine Vo for Bronco Hacks 2018.
+						      </p>
+						    </div>
+						  </div>
+						</footer>
 
           </div>
     )
