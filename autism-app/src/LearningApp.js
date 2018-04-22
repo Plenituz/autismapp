@@ -14,6 +14,7 @@ import AngryPicture2 from './assets/angry2.jpg';
 import AngryPicture3 from './assets/angry3.jpg';
 import AngryPicture4 from './assets/angry4.jpg';
 import AngryPicture5 from './assets/angry5.jpg';
+import axios from 'axios';
 import CardGallery from './CardGallery';
 
 
@@ -85,15 +86,39 @@ export default class LearningApp extends Component {
   	})
   }
 
-  checkAnswer = () => {
+  checkAnswer = () => {  
+        let questionID = null;
+        if (this.state.correctAnswer == 'happy'){
+          questionID = 2;
+        } else if (this.state.correctAnswer == 'sad'){
+          questionID = 1;
+        } else if (this.state.correctAnswer == 'angry'){
+          questionID = 3;
+        }
+        let isRight = null;
+
   	if (this.state.correctAnswer === this.state.selectedCard) {
   		this.setState({ isCorrect: true });
   		this.setState({ progress: this.state.progress+10 });
+      isRight = 1;
   	} 
   	if (this.state.correctAnswer !== this.state.selectedCard) {
   		this.setState({ isCorrect: false });
   		this.setState({ progress: this.state.progress-5 });
+      isRight = 0;
   	}
+
+      const data = {
+         questionId: questionID,
+         isRight: isRight,
+        };
+
+      axios.post(`http://localhost:3001/login`, data)
+       .then(res => {
+         console.log(res);
+       });
+
+
   }
 
   reset = () => {

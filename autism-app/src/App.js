@@ -13,18 +13,21 @@ import 'bulma/css/bulma.css'
 import './App.css';
 
 
-function PrivateRoute ({component: Component, loggedIn, ...rest}) {
+function PrivateRoute ({component: Component, loggedIn, user, ...rest}) {
+  console.log(user.userType);
   return (
     <Route
       {...rest}
       render={(props) => loggedIn === true
-        ? <Component {...props} />
+        ? <Component {...props} user={user} />
         : <Redirect to={{pathname: '/login', state: {from: props.location}} } />}
     />
   )
 }
 
-function PublicRoute ({component: Component, loggedIn, logIn, ...rest}) {
+function PublicRoute ({component: Component, loggedIn, user, logIn, ...rest}) {
+  console.log(user.type);
+
   return (
     <Route
       {...rest}
@@ -33,6 +36,9 @@ function PublicRoute ({component: Component, loggedIn, logIn, ...rest}) {
         : <Redirect to='/dashboard' />}
     />
   )
+
+
+
 }
 
 class App extends Component {
@@ -66,11 +72,11 @@ class App extends Component {
           <div className="App">
              <NavigationBar loggedIn={this.state.loggedIn} logOut={this.logOut} />
              <Route exact path="/" render={()=><HomePage />} />
-             <PrivateRoute loggedIn={this.state.loggedIn} path="/LearningApp" component={LearningApp} />
-             <PrivateRoute loggedIn={this.state.loggedIn} path="/EducationDashboard" component={EducationDashboard} />
-             <PrivateRoute loggedIn={this.state.loggedIn} path="/Dashboard" component={Dashboard} />
-             <PublicRoute loggedIn={this.state.loggedIn} logIn={this.logIn} path="/Register" component={Register} />
-             <PublicRoute loggedIn={this.state.loggedIn} logIn={this.logIn} path="/LogIn" component={LogIn} />
+             <PrivateRoute loggedIn={this.state.loggedIn} user={this.state.user} path="/LearningApp" component={LearningApp} />
+             <PrivateRoute loggedIn={this.state.loggedIn} user={this.state.user} path="/EducationDashboard" component={EducationDashboard} />
+             <PrivateRoute loggedIn={this.state.loggedIn} user={this.state.user} path="/Dashboard" component={Dashboard} />
+             <PublicRoute loggedIn={this.state.loggedIn} user={this.state.user} logIn={this.logIn} path="/Register" component={Register} />
+             <PublicRoute loggedIn={this.state.loggedIn} user={this.state.user} logIn={this.logIn} path="/LogIn" component={LogIn} />
           </div>
         </Router>
 

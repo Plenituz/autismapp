@@ -5,8 +5,10 @@ import achievement2 from './assets/achievement2.jpg'
 
 
 export default class Dashboard extends Component {
-  
+
   render() {
+  console.log(this.props);
+
     return (
       <div className="dashboard" >
         <div className="tile is-ancestor">
@@ -23,7 +25,7 @@ export default class Dashboard extends Component {
           </div>
           <div className="tile is-parent is-vertical">
             <div className="tile is-child box">
-              <h1 class="title is-4">Welcome, #USERNAME</h1>
+              <h1 class="title is-4">Welcome, {this.props.user.name} </h1>
             </div>
             <div className="tile is-child box">
               <h1 class="title is-4">Achievements: </h1>

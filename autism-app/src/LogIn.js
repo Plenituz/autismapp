@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Cookie from './assets/cookie.jpg';
+import axios from 'axios';
 
 export default class LogIn extends Component {
 
@@ -8,8 +9,19 @@ export default class LogIn extends Component {
 
 	handleLogin = (event) => {
 		event.preventDefault();
-		console.log(this.refs.email.value, this.refs.password.value);
-		this.props.logIn();
+		// this.props.logIn();
+
+		const data = {
+      username: this.refs.username.value,
+      password: this.refs.password.value,
+    };
+
+    axios.post(`http://localhost:3001/login`, data)
+      .then(res => {
+        console.log(res);
+        this.props.logIn(res.data);
+      })
+
 	}
 
   render(){
@@ -25,7 +37,7 @@ export default class LogIn extends Component {
 
 	              <div class="field">
 	                <div class="control">
-	                  <input class="input is-medium" type="email" placeholder="Your Email" ref="email"></input>
+	                  <input class="input is-medium" type="username" placeholder="username" ref="username"></input>
 	                </div>
               	</div>
 
