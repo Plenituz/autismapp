@@ -14,7 +14,6 @@ export default class StudentCard extends Component {
 	      </div>
 	      {this.props.name}
       </div>
-
     );
   }
 }

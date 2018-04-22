@@ -8,7 +8,7 @@ export default class Register extends Component {
 
   signUp = (event) => {
     event.preventDefault();
-    // this.refs.email, this.refs.password
+    // this.refs.email, this.refs.password, this.refs.student.checked, this.refs.educator.checked
 
 //POST 
 // {
@@ -17,11 +17,24 @@ export default class Register extends Component {
 //     age
 //     password
 // }
-    axios.post(`http://localhost:3001/`, 'user', 0, 9, 'password')
+
+  const type = this.refs.student.checked ? 0 : 1;
+
+
+  console.log(this.refs);
+    const data = {
+      username: this.refs.username.value,
+      userType: type,
+      age: 7,
+      password: this.refs.password.value,
+    };
+
+    axios.post(`http://localhost:3001/register`, data)
       .then(res => {
         console.log(res);
-        console.log(res.data);
+        this.props.logIn(res.data);
       })
+
   }
 
 
@@ -39,7 +52,7 @@ export default class Register extends Component {
 
                     <div class="field">
                       <div class="control">
-                        <input class="input is-medium" type="email" placeholder="Your Email" ref="email"></input>
+                        <input class="input is-medium" type="username" placeholder="Username" ref="username"></input>
                       </div>
                     </div>
 
@@ -56,12 +69,12 @@ export default class Register extends Component {
 
                    <div class="control">
                     <label class="radio">
-                      <input type="radio" name="answer"></input>
+                      <input type="radio" name="answer" ref="student"></input>
                        &nbsp;&nbsp;Student
                     </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <label class="radio">
-                      <input type="radio" name="answer"></input>
+                      <input type="radio" name="answer" ref="educator"></input>
                       &nbsp;&nbsp;Educator
                     </label>
                   </div>

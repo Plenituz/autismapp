@@ -40,12 +40,12 @@ class App extends Component {
     super(props);
     this.state = {
       loggedIn: false,
-      user: {userid: "fred", userType: "student", progress: 0},
+      user: null,
     };
   }
 
-  logIn = () => {
-    this.setState({ loggedIn: true });
+  logIn = (user) => {
+    this.setState({ loggedIn: true, user: user});
   }
   logOut = () => {
     this.setState({ loggedIn: false });
@@ -69,7 +69,7 @@ class App extends Component {
              <PrivateRoute loggedIn={this.state.loggedIn} path="/LearningApp" component={LearningApp} />
              <PrivateRoute loggedIn={this.state.loggedIn} path="/EducationDashboard" component={EducationDashboard} />
              <PrivateRoute loggedIn={this.state.loggedIn} path="/Dashboard" component={Dashboard} />
-             <PublicRoute loggedIn={this.state.loggedIn} path="/Register" component={Register} />
+             <PublicRoute loggedIn={this.state.loggedIn} logIn={this.logIn} path="/Register" component={Register} />
              <PublicRoute loggedIn={this.state.loggedIn} logIn={this.logIn} path="/LogIn" component={LogIn} />
           </div>
         </Router>
