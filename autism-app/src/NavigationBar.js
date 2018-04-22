@@ -11,7 +11,7 @@ export default class NavigationBar extends Component {
         
         	<nav className="navbar is-info" role="navigation" aria-label="main navigation">
 							<div className="navbar-brand">
-							  <img class="cookie" src={Cookie}></img>
+						    <img class="cookie" src={Cookie}></img>
 								<div className="navbar-item nav-brand">
 									Kookie
 								</div>
@@ -19,7 +19,7 @@ export default class NavigationBar extends Component {
 
 							<div className="navbar-menu">
 								<div className="navbar-end">
-								
+
 									<div class="navbar-item">
 											<NavLink exact className="nav-link" activeClassName='active' to="/">
 												Home
@@ -42,11 +42,11 @@ export default class NavigationBar extends Component {
 					</nav>
         </div>
     :
-
         <div className="navigation-bar">
         
         	<nav className="navbar is-info" role="navigation" aria-label="main navigation">
 							<div className="navbar-brand">
+ 								<img class="cookie" src={Cookie}></img>
 								<div className="navbar-item nav-brand">
 									Kookie
 								</div>

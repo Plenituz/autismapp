@@ -13,7 +13,7 @@ export default class Dashboard extends Component {
           <div className="tile is-8 is-parent">
               <div className="tile is-child box">
                 <div className="categories">
-                  <h1 class="title">Pick a Category</h1>
+                  <h1 class="title category-pick">Pick a Category</h1>
                     <div>
                       <Link className="button is-link category-button is-medium" to="/LearningApp">Emotions</Link>
                       <Link className="button is-success category-button is-medium" to="/Language">Language</Link>
