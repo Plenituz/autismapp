@@ -1,0 +1,1 @@
+SELECT name, email, user_type as userType FROM users WHERE id = @userId

@@ -7,8 +7,9 @@ CREATE TABLE IF NOT EXISTS users (
     id int(11) NOT NULL AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
     email VARCHAR(254) NOT NULL,
+    password BINARY(60) NOT NULL,
     creation_date DATE NOT NULL,
-    user_type TINYINT NOT NULL,
+    user_type TINYINT NOT NULL,#0 = learner, 1 = teacher
 
     PRIMARY KEY(id),
     UNIQUE KEY ind_uni_email(email)
