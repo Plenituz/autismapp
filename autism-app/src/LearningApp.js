@@ -88,9 +88,11 @@ export default class LearningApp extends Component {
   checkAnswer = () => {
   	if (this.state.correctAnswer === this.state.selectedCard) {
   		this.setState({ isCorrect: true });
+  		this.setState({ progress: this.state.progress+10 });
   	} 
   	if (this.state.correctAnswer !== this.state.selectedCard) {
   		this.setState({ isCorrect: false });
+  		this.setState({ progress: this.state.progress-5 });
   	}
   }
 
@@ -145,7 +147,7 @@ export default class LearningApp extends Component {
   render() {
     return (
           <div className="learning-app">
-            <br></br>
+						<progress class="progress is-success is-large progress-bar" value={this.state.progress} max="100"></progress>
           	<h1 class="title is-3 ">{this.state.quizQuestion}</h1>
           	<CardGallery cardPool={this.state.cardPool} selectCard={this.selectCard} selectedCard={this.state.selectedCard} />
           	{this.renderFooter()}

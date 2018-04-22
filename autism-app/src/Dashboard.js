@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import {achievements} from './assets/achievements.png'
+import achievement1 from './assets/achievement1.jpg'
+import achievement2 from './assets/achievement2.jpg'
+
 
 export default class Dashboard extends Component {
   
@@ -25,6 +27,8 @@ export default class Dashboard extends Component {
             </div>
             <div className="tile is-child box">
               <h1 class="title is-4">Achievements: </h1>
+              <img class="achievement" src={achievement1}></img>
+              <img class="achievement" src={achievement2}></img>
             </div>
           </div>
         </div>
