@@ -2,7 +2,29 @@
   text-align: center;
 }
 
+.learning-app{
+  margin-top: 5%;
+}
 
+#card-gallery{
+  margin-top: 60px;
+  display: flex;
+  margin-left: 15%;
+  margin-right: 15%;
+  justify-content: space-around;
+}
+
+.flash-card > img{
+  width: 230px;
+  height: 230px;
+  margin-bottom: -10px;
+  border: 4px solid #DCDCDC;
+}
+
+.flash-card > img:hover{
+  border: 5px solid #209cee;
+  cursor: pointer;
+}
 
 .fa{
   font-size: 80px;
@@ -19,7 +41,7 @@
 }
 
 .hero-title{
-    font-size: 48px;
+  font-size: 48px;
   color: white;
 }
 
@@ -85,4 +107,20 @@
 
 .category-button{
    margin: 10px 30px 20px 20px;
+}
+
+.level{
+  background-color: #f0f0f0;
+  width: 100%;
+  height: 120px;
+  position: fixed;
+  bottom: 0;
+}
+
+.level-left{
+  margin-left: 14%;
+}
+
+.level-right{
+  margin-right: 14%;
 }
