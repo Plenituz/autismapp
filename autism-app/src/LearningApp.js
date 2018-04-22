@@ -109,11 +109,10 @@ export default class LearningApp extends Component {
   	}
 
       const data = {
-         questionId: questionID,
          isRight: isRight,
         };
 
-      axios.post(`http://localhost:3001/login`, data)
+      axios.post(`http://localhost:3001/answer?userId=${this.props.user.userId}`, data)
        .then(res => {
          console.log(res);
        });

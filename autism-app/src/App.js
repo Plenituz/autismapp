@@ -14,7 +14,9 @@ import './App.css';
 
 
 function PrivateRoute ({component: Component, loggedIn, user, ...rest}) {
-  console.log(user.userType);
+
+
+
   return (
     <Route
       {...rest}
@@ -26,7 +28,6 @@ function PrivateRoute ({component: Component, loggedIn, user, ...rest}) {
 }
 
 function PublicRoute ({component: Component, loggedIn, user, logIn, ...rest}) {
-  console.log(user.type);
 
   return (
     <Route
