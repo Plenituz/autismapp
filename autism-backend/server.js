@@ -62,5 +62,5 @@ app.use((req, res, next) => {
     res.status(404).send('the page ' + req.url + ' doesn\'t exist');
 });
 
-var server = app.listen(parseInt(process.env.PORT), "127.0.0.1", 
+var server = app.listen(parseInt(process.env.PORT), process.env.LISTEN_IP, 
     () => console.log("Server running on port 3000"));

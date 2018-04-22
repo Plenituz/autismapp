@@ -37,7 +37,10 @@ class Database{
 
     async getBasicUserInfo(userId){
         let result = await this.SQL.queryFile('getUserInfo', { userId });
-        return result[0];
+        return {
+            ...result[0],
+            userId
+        };
     }
 
     async getUserInfo(userId){

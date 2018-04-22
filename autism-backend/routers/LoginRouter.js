@@ -54,22 +54,22 @@ LoginRouter.post('/register', [
 
 LoginRouter.post('/setTeacher', [
 
-    ensureLoggedIn(),
-
     check('teacherId')
     .exists().withMessage('teacherId must be given')
     .not().isEmpty().withMessage('teacherId cant empty')
     
-
 ], async (req, res) => {
-    var studentId = req.query.studentId;
-    var teacherId = req.query.teacherId;
-    if(!studentId || !teacherId){
-        return res.status(422).send('you need to provide a teacherId, studentId');
+
+    if(!req.isAuthenticated()){
+        return res.status(422).send('you are not connected');
     }
+
+    var studentId = req.user.userId;
+    var teacherId = req.body.teacherId;
 
     try{
         await Database.setTeacher(studentId, teacherId);
+        return res.status(200).send('updated');
     }catch(ex){
         return res.status(422).send(ex);
     }
@@ -112,15 +112,16 @@ LoginRouter.post('/login', [
     }
 });
 
-LoginRouter.get('/userInfo', async (req, res) => {
+LoginRouter.get('/userInfo',
+ async (req, res) => {
 
-    var token = req.query.token;
-    if(!token){
-        return res.status(422).send('you need to provide a token');
+    if(!req.isAuthenticated()){
+        return res.status(422).send('you are not connected');
     }
 
-    try{
-        let userInfo = await Database.getUserInfo(token);
+    var studentId = req.user.userId;
+    try{ 
+        let userInfo = await Database.getUserInfo(studentId);
         res.status(200).send(userInfo);
     }catch(ex){
         return res.status(422).send(ex);
@@ -128,9 +129,12 @@ LoginRouter.get('/userInfo', async (req, res) => {
 });
 
 LoginRouter.get('/studentInfo', async (req, res) => {
+    if(!req.isAuthenticated()){
+        return res.status(422).send('you are not connected');
+    }
     var studentId = req.query.studentId;
-    var teacherId = req.query.teacherId;
-    if(!studentId || !teacherId){
+    var teacherId = req.user.userId;
+    if(!studentId){
         return res.status(422).send('you need to provide a teacherId, studentId');
     }
 
