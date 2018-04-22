@@ -16,25 +16,23 @@ class Database{
         this.SQL = new SQLCache(this.pool);
     }
 
-    async addUser(name, userType, age, teacherId){
-        
-        if(teacherId){
-            let result = await this.SQL.queryFile('addLearner', {
-                name,
-                userType,
-                age,
-                teacherId
-            });
-            return result[0].created_user_id;
-        }else{
-            let result = await this.SQL.queryFile('addTeacher', {
-                name,
-                userType,
-                age
-            });
-            return result[0].created_user_id;
-        }
+    async addUser(name, password, userType, age){
+        let passwordHash = await bcrypt.hash(password, parseInt(process.env.SALT_ROUND));
 
+        let result = await this.SQL.queryFile('addUser', {
+            name,
+            password: passwordHash,
+            userType,
+            age
+        });
+        return result[0].created_user_id;
+    }
+
+    async setTeacher(studentId, teacherId){
+        await this.SQL.queryFile('setTeacher', {
+            studentId, 
+            teacherId
+        });
     }
 
     async getBasicUserInfo(userId){
@@ -45,23 +43,41 @@ class Database{
     async getUserInfo(userId){
         let basicInfo = await this.getBasicUserInfo(userId);
         if(basicInfo.userType !== 1){
-            return basicInfo;//students, just give basic info
+            return basicInfo;
+        }else{
+            let students = await this.SQL.queryFile('getTeacherInfo', { userId });
+            return {
+                ...basicInfo,
+                students:[
+                    ...students
+                ]
+            };
         }
-        let students = await this.SQL.queryFile('getTeacherInfo', { userId });
+    }
+
+    async getStudentInfo(studentId, teacherId){
+        let basicInfo = await this.getBasicUserInfo(studentId);
+        let notes = await this.SQL.queryFile('getNotes', { studentId, teacherId });
+        notes = notes.map(row => row.note);
         return {
             ...basicInfo,
-            students:[
-                ...students
+            notes: [
+                ...notes
             ]
         };
     }
 
-    async canAuthenticate(usernameOrEmail){
+    async canAuthenticate(usernameOrEmail, password){
         let result = await this.SQL.queryFile('canAuthenticate', {
             usernameOrEmail
         });
         if(result.length == 0){
             throw new Error('no user found');
+        }
+
+        let passwordMatch = bcrypt.compare(password, result[0].password.toString());
+        if(!passwordMatch){
+            throw new Error('password doest match');
         }
 
         return result[0].id;
