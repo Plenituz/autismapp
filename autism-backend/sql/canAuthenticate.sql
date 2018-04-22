@@ -1,0 +1,1 @@
+SELECT id, password FROM users WHERE name=@usernameOrEmail OR email=@usernameOrEmail
