@@ -139,7 +139,7 @@ module.exports = class SQLCache{
     escapeText(text, params) {
         let res = text;
         for (let prop in params) {
-            res = res.replace('@' + prop, mysql.escape(params[prop]));
+            res = res.split('@' + prop).join(mysql.escape(params[prop]));
         }
         return res;
     }
