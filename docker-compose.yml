@@ -1,9 +1,12 @@
-version : "3"
-services :
-    db : 
+version: "3"
+services:
+    db: 
         image: mysql
-        restart : always
+        ports:
+            - "3306:3306"
         environment : 
-            MYSQL_ROOT_PASSWORD: admin
-            MYSQL_DATABASE : autism_app
-    
+            MYSQL_ROOT_PASSWORD: root 
+        volumes:
+            - ./autism-backend/:/docker 
+        restart: always
+           
