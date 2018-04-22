@@ -5,34 +5,26 @@ import StudentPage from './StudentPage';
 export default class StudentsGallery extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      currentStudent: null,
-    };
   }
 
 
 	renderStudentGallery = () => {
-
-
-
-		return this.state.currentStudent != null
-			? <StudentPage student={this.state.currentStudent}/>
-		  : this.props.students.map((item)=> {return (
+		return this.props.students.map((item)=> {return (
 				  <StudentCard
 							name={item}
-							pickStudent={this.pickStudent}
+							pickStudent={this.props.pickStudent}
 					/>)
 				})
 	}
-	
-	pickStudent = (id) => {
-		this.setState({ currentStudent: id });
-	}
+
 
   render() {
     return (
-      <div className="students-gallery" >
-      	{this.renderStudentGallery()}
+    	<div>
+        <h1 class="title is-3 welcome">Welcome {this.props.teacher}</h1>
+	      <div className="students-gallery" >
+	      	{this.renderStudentGallery()}
+	      </div>
       </div>
     );
   }
