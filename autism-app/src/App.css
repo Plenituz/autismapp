@@ -64,6 +64,13 @@
     border-bottom: 2px solid black;
 }
 
+.subtitle:not(:last-child){
+  margin: 0px;
+}
+
+.special-sub{
+  width: 200px;
+}
 .hero-title{
   font-size: 48px;
   color: white;
@@ -102,10 +109,18 @@
   margin-left: 20px;
 }
 
-.hero-buttons{
-  display: flex;
-
+#hero-buttons{
+  margin-top: 35px;
 }
+.hero-body{
+  padding: 0px;
+}
+
+.hero.is-medium .hero-body {
+  padding-top: 80px;
+  padding-bottom: 70px;
+}
+
 
 #teachers-button{
   border: 1px solid black;
@@ -145,6 +160,10 @@
 
 #students-button:hover{
   background-color: #32CD32;
+}
+
+.educational-dashboard{
+  margin-top: 30px;
 }
 
 .dashboard{
@@ -193,7 +212,7 @@
 .students-gallery{
   display: flex;
   margin-top: 15px;
-  margin-left: 10%;
+  margin-left: 13%;
   margin-right: 10%;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -217,9 +236,61 @@
   margin-top: 53px;
 }
 
+
 .student-card:hover{
   border: 4px solid LightGreen;
   cursor: pointer;
 }
+
+#student-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 30%;
+}
+
+.student-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 30px;
+}
+
+.header-info{
+  margin-top: 25px;
+  text-align: left;
+  width: 200px;
+}
+
+.special-sub{
+  margin: 0px;
+}
+
+.special-title{
+  margin: 0px;
+}
+
+.title:not(.is-spaced) + .subtitle{
+  margin: 0px;
+}
+
+.title:not(:last-child){
+  margin: 0px;
+}
+
+#graphs{
+  display: flex;
+  flex-direction: row;
+  margin-top: 80px;
+  justify-content: flex-start;
+}
+
+#areas-of-improvement{
+  margin-left: 40px;
+  text-align: left;
+}
+
 
 
