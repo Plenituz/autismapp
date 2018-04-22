@@ -19,9 +19,6 @@ export default class Register extends Component {
 // }
 
   const type = this.refs.student.checked ? 0 : 1;
-
-
-  console.log(this.refs);
     const data = {
       username: this.refs.username.value,
       userType: type,

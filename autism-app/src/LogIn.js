@@ -10,7 +10,7 @@ export default class LogIn extends Component {
 	handleLogin = (event) => {
 		event.preventDefault();
 		// this.props.logIn();
-
+ 		
 		const data = {
       username: this.refs.username.value,
       password: this.refs.password.value,
@@ -37,7 +37,7 @@ export default class LogIn extends Component {
 
 	              <div class="field">
 	                <div class="control">
-	                  <input class="input is-medium" type="username" placeholder="username" ref="username"></input>
+	                  <input class="input is-medium" type="username" placeholder="Username" ref="username"></input>
 	                </div>
               	</div>
 

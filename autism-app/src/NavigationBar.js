@@ -14,7 +14,7 @@ export default class NavigationBar extends Component {
 							<div className="navbar-brand">
 						    <img class="cookie" src={Cookie}></img>
 								<div className="navbar-item nav-brand">
-									Kookie
+									<h1 class="title navbrandtitle">Kookie</h1>
 								</div>
 							</div>
 
@@ -49,7 +49,7 @@ export default class NavigationBar extends Component {
 							<div className="navbar-brand">
  								<img class="cookie" src={Cookie}></img>
 								<div className="navbar-item nav-brand">
-									Kookie
+									<h1 class="title navbrandtitle">Kookie</h1>
 								</div>
 							</div>
 

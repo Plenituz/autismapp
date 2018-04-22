@@ -1,3 +1,8 @@
+html, body{
+ height: 100%;
+ background-color: #F5F5F5;
+}
+
 .App {
   text-align: center;
 }
@@ -6,6 +11,9 @@
   color: white;
 }
 
+.navbrandtitle{
+  color: white;
+}
 #logout:hover{
   color: black;
   cursor: pointer;
@@ -69,7 +77,7 @@
 }
 
 .special-sub{
-  width: 250px;
+  width: 200px;
 }
 .hero-title{
   font-size: 48px;
@@ -96,8 +104,13 @@
   font-size: 18px;
 }
 
+.navbar-brand{
+  margin-left: 20px;
+}
+
 .nav-link{
   color: white;
+  font-weight: bold; 
   margin-right: 14px;
 }
 .nav-brand{
@@ -118,7 +131,7 @@
 
 .hero.is-medium .hero-body {
   padding-top: 80px;
-  padding-bottom: 70px;
+  padding-bottom: 90px;
 }
 
 
@@ -168,10 +181,12 @@
 
 .educational-dashboard{
   margin-top: 30px;
+  height: 100%;
 }
 
 .dashboard{
   margin: 50px 80px 20px 80px;
+
 }
 
 .category-button{
