@@ -25,3 +25,8 @@ VALUES
 (1, 'teacher1', 35, NOW(), 1, NULL),
 (2, 'student1', 12, NOW(), 0, 1),
 (3, 'student2', 14, NOW(), 0, 1);
+
+INSERT INTO notes (teacher_id, student_id, note)
+VALUES
+(1, 2, 'this guy is pretty cool'),
+(1, 2, 'last monday he ate ice cream');
