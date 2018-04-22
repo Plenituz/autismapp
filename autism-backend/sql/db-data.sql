@@ -19,3 +19,9 @@ VALUES
 (3, 0, '/assets/sad3.jpg'),
 (3, 1, '/assets/angry3.jpg'),
 (3, 0, '/assets/happy3.jpg');
+
+INSERT INTO users (id, name, age, creation_date, user_type, teacher_id)
+VALUES
+(1, 'teacher1', 35, NOW(), 1, NULL),
+(2, 'student1', 12, NOW(), 0, 1),
+(3, 'student2', 14, NOW(), 0, 1);

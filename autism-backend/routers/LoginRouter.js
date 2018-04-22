@@ -15,14 +15,13 @@ LoginRouter.post('/register', [
     check('userType')
     .exists().withMessage('userType must be provided')
     .isInt().withMessage('userType must be int')
-    .isIn([0, 1]).withMessage('userType must be 0 or 1')
+    .isIn([0, 1]).withMessage('userType must be 0 or 1'),
+
+    check('age').trim()
+    .exists().withMessage('The age should be given')
+    .isInt().withMessage('The age should be an int')
 
 ], async (req, res) => {
-
-    if(req.isAuthenticated()){
-        res.redirect(redirectUrl);
-        return;
-    }
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -30,8 +29,9 @@ LoginRouter.post('/register', [
     }
 
     try{
-        let createdUserId = await Database.addUser(req.body.username, req.body.email, req.body.userType);
-        res.status(200).send({ userId: createdUserId });
+        let createdUserId = await Database.addUser(req.body.username, req.body.userType, req.body.age, req.body.teacherId);
+        let userInfo = await Database.getUserInfo(createdUserId);
+        res.status(200).send(userInfo);
     }catch(ex){
         res.status(500).send('An error occured while creating user:' + ex);
     }
@@ -39,9 +39,9 @@ LoginRouter.post('/register', [
 
 
 LoginRouter.post('/login', [
-    check('email').trim()
-    .not().isEmpty().withMessage('email cant be empty')
-    .exists().withMessage('The email must be given')
+    check('username').trim()
+    .not().isEmpty().withMessage('username cant be empty')
+    .exists().withMessage('The username must be given')
 ],
  async (req, res) => {
     var token = req.query.token;
@@ -54,7 +54,7 @@ LoginRouter.post('/login', [
         return res.status(422).json({ errors: errors.mapped() });
     }
 
-    let usernameOrEmail = req.body.email;
+    let usernameOrEmail = req.body.username;
     try{
         let userId = await Database.canAuthenticate(usernameOrEmail);
         res.status(200).send({ userId });
